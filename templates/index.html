@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gradebook System - Kevin Simorangkir</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Gradebook System</h1>
+      <p class="info-message">
+        <b>Notes:</b> <br />
+        For those with a value of 0, it is currently being checked, except for
+        Quiz 1.
+      </p>
+
+      <label for="course">Select Course:</label>
+      <select id="course" name="course" onchange="updateLastModified()">
+        <option value="">--Select Course--</option>
+        {% for course in courses %}
+        <option value="{{ course }}">{{ course }}</option>
+        {% endfor %}
+      </select>
+      <p id="lastUpdated" class="last-updated"></p>
+      <br />
+
+      <label for="studentId">Enter Student ID:</label>
+      <div class="input-icon">
+        <i class="fas fa-user"></i>
+        <input
+          type="text"
+          id="studentId"
+          name="studentId"
+          placeholder="e.g. 123456"
+        />
+      </div>
+
+      <button onclick="getGrades()">Submit</button>
+      <div id="result"></div>
+      <div id="spinner" class="spinner" style="display: none"></div>
+    </div>
+  </body>
+</html>

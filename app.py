@@ -4,7 +4,7 @@ from flask import Flask, jsonify, render_template, abort
 
 app = Flask(__name__)
 # Set the CSV directory to 'static' folder
-CSV_DIRECTORY = os.path.join('static')
+CSV_DIRECTORY = 'static'
 
 
 @app.route('/')

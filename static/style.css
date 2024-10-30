@@ -14,8 +14,7 @@ h1 {
     text-align: center;
     animation: fadeIn 1.5s ease-in-out;
     font-size: 2.5em;
-    margin-bottom: 20px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
 }
 
 .container {
@@ -24,20 +23,14 @@ h1 {
     background-color: #1f1f1f;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
     animation: slideUp 1.5s ease-in-out;
-    transition: transform 0.3s ease;
-}
-
-.container:hover {
-    transform: translateY(-5px);
 }
 
 label {
     display: block;
     margin-top: 15px;
     font-weight: bold;
-    color: #64B5F6;
 }
 
 .select,
@@ -48,9 +41,11 @@ label {
 .input-icon i {
     position: absolute;
     left: 10px;
+    /* Adjust as needed */
     top: 50%;
     transform: translateY(-50%);
     color: #64B5F6;
+    /* Icon color */
 }
 
 input[type="text"],
@@ -58,18 +53,18 @@ select,
 button {
     width: 100%;
     box-sizing: border-box;
-    padding: 10px 15px;
+    padding: 10px;
     margin-top: 5px;
     font-size: 16px;
     border: 2px solid #64B5F6;
     border-radius: 5px;
     background-color: #333;
-    color: #ffffff;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    color: #fff;
+    transition: background-color 0.3s ease;
 }
 
 .input-icon input {
-    padding-left: 40px;
+    padding-left: 30px;
     /* Space for the icon */
 }
 
@@ -78,7 +73,7 @@ select:hover,
 button:hover {
     background-color: #444;
     border-color: #4CAF50;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 button {
@@ -86,12 +81,11 @@ button {
     color: white;
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
     background-color: #45a049;
-    transform: translateY(-2px);
 }
 
 button:focus {
@@ -115,36 +109,15 @@ button:focus {
 .grade-item {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    /* Center items vertically */
     margin-bottom: 10px;
-    padding: 18px;
-    /* More padding for rectangular look */
+    padding: 10px;
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.1);
-    transition: background-color 0.3s ease;
-    border: 1px solid #64B5F6;
-    /* Add border to the grade item */
-}
-
-.grade-item:hover {
-    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .grade-header {
     font-weight: bold;
     color: #64B5F6;
-    flex: 1;
-    /* Allow header to take available space */
-}
-
-.grade-value {
-    flex: 0 0 100px;
-    /* Fixed width for the value */
-    text-align: right;
-    /* Align value to the right */
-    color: #ffffff;
-    /* Color of the value text */
 }
 
 .grade-separator {
@@ -164,24 +137,22 @@ button:focus {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
     background-color: #1f1f1f;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
     max-width: 400px;
     width: 90%;
-    animation: slideUp 0.5s ease-in-out;
 }
 
 .close {
     cursor: pointer;
     float: right;
     font-size: 20px;
-    color: #64B5F6;
 }
 
 .spinner {
@@ -245,30 +216,6 @@ button:focus {
 @media (max-width: 600px) {
     .container {
         max-width: 100%;
-        padding: 10px;
-    }
-
-    h1 {
-        font-size: 2em;
-        /* Adjusting font size for smaller screens */
-    }
-
-    button {
-        font-size: 14px;
-        /* Smaller font size for buttons */
-    }
-
-    .grade-item {
-        flex-direction: column;
-        /* Stack items vertically on small screens */
-        align-items: flex-start;
-        /* Align to the start */
-    }
-
-    .grade-value {
-        text-align: left;
-        /* Align value to the left on small screens */
-        width: 100%;
-        /* Allow it to take full width */
+        padding: 0 10px;
     }
 }

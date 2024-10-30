@@ -4,22 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gradebook System - Kevin Simorangkir</title>
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="{{ url_for('static', filename='Assets/favicon.ico') }}"
-    />
+    <link rel="icon" type="image/x-icon" href="/Assets/favicon.ico" />
 
-    <!-- SEO Meta Tags -->
+    <!-- Deskripsi halaman untuk SEO -->
     <meta
       name="description"
       content="Gradebook adalah sistem yang digunakan untuk mengecek nilai mahasiswa."
     />
-    <meta name="keywords" content="Gradebook" />
-    <meta name="author" content="Kevin Simorangkir" />
-    <meta name="robots" content="index, follow" />
 
-    <!-- Open Graph for social media -->
+    <!-- Kata kunci untuk SEO -->
+    <meta name="keywords" content="Gradebook" />
+
+    <!-- Author atau pembuat halaman -->
+    <meta name="author" content="Kevin Simorangkir" />
+
+    <!-- Set viewport untuk tampilan responsif -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Set robots untuk instruksi mesin pencari -->
+    <meta name="robots" content="Gradebook" />
+
+    <!-- Open Graph untuk media sosial -->
     <meta property="og:title" content="Gradebook System - Kevin Simorangkir" />
     <meta
       property="og:description"
@@ -42,8 +47,6 @@
       name="twitter:image"
       content="URL ke gambar untuk ditampilkan di Twitter"
     />
-
-    <!-- Stylesheets -->
     <link
       rel="stylesheet"
       type="text/css"
@@ -53,8 +56,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-
-    <!-- Scripts -->
     <script src="{{ url_for('static', filename='script.js') }}" defer></script>
   </head>
   <body>

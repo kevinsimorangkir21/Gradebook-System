@@ -1,6 +1,6 @@
 import os
 from datetime import datetime
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, abort
 
 app = Flask(__name__)
 # Set the CSV directory to 'static' folder
@@ -15,35 +15,25 @@ def index():
 
 @app.route('/last_modified/<course>')
 def get_last_modified(course):
-    """Returns the last modified date of the specified course."""
-    print(f"Requested last_modified for course: {course}")  # Debugging line
     try:
         last_modified_date = get_last_modified_date(course)
         return jsonify({'last_modified_date': last_modified_date})
     except FileNotFoundError:
-        print(f"Course not found: {course}")  # Debugging line
         return jsonify({'error': 'Course not found'}), 404
 
 
 @app.route('/grades/<course>/<student_id>')
 def get_grades(course, student_id):
-    """Returns the grades for a specific student in a given course."""
-    print(
-        f"Fetching grades for course: {course}, student ID: {student_id}")  # Debugging line
     try:
         grades = read_grades_from_csv(f'{course}.csv')
         student_grades = grades.get(student_id)
 
-        if student_grades is not None:
+        if student_grades:
             return jsonify(student_grades)
         else:
             return jsonify({'error': 'Student ID not found'}), 404
     except FileNotFoundError:
-        print(f"Course not found: {course}")  # Debugging line
         return jsonify({'error': 'Course not found'}), 404
-    except Exception as e:
-        print(f"Error fetching grades: {e}")  # Debugging line
-        return jsonify({'error': 'An error occurred while fetching grades'}), 500
 
 
 def get_courses():
@@ -51,7 +41,9 @@ def get_courses():
     try:
         csv_files = [file for file in os.listdir(
             CSV_DIRECTORY) if file.endswith('.csv')]
-        return [file.rsplit('.', 1)[0] for file in csv_files] if csv_files else []
+        if not csv_files:
+            return []
+        return [file.rsplit('.', 1)[0] for file in csv_files]
     except Exception as e:
         print(f"Error fetching courses: {e}")
         return []

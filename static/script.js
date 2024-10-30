@@ -7,9 +7,7 @@ function updateLastModified() {
         return;
     }
 
-    const encodedCourse = encodeURIComponent(course); // Encode course name
-
-    fetch(`/last_modified/${encodedCourse}`)
+    fetch(`/last_modified/${course}`)
         .then(response => {
             if (!response.ok) throw new Error('Network response was not ok');
             return response.json();
@@ -36,13 +34,11 @@ function getGrades() {
         return;
     }
 
+    // Show spinner while fetching data
     spinner.style.display = 'block';
     resultDiv.innerHTML = ''; // Clear previous results
 
-    const encodedCourse = encodeURIComponent(course); // Encode course name
-    const encodedStudentId = encodeURIComponent(studentId); // Encode student ID
-
-    fetch(`/grades/${encodedCourse}/${encodedStudentId}`)
+    fetch(`/grades/${course}/${studentId}`)
         .then(response => {
             if (!response.ok) throw new Error('Network response was not ok');
             return response.json();
@@ -54,7 +50,7 @@ function getGrades() {
                 resultDiv.innerHTML = `<p>${data.error}</p>`;
             } else {
                 let gradesHtml = `<h2>Grades for Student ID: ${studentId}</h2><ul>`;
-                const categories = ['Name', 'Assignment 1', 'Assignment 2', 'Assignment 3', 'Assignment 4', 'Quiz 1', 'Quiz 2', 'Rata - Rata'. 'UTS', 'UAS'];
+                const categories = ['Name', 'Assignment 1', 'Assignment 2', 'Assignment 3', 'Assignment 4', 'Quiz 1', 'Quiz 2', 'Rata - Rata', 'UTS','UAS'];
                 categories.forEach(category => {
                     if (data.hasOwnProperty(category)) {
                         gradesHtml += `<li class="grade-item"><span class="grade-header">${category}:</span> ${data[category]}</li>`;

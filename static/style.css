@@ -33,7 +33,6 @@ label {
     font-weight: bold;
 }
 
-.select,
 .input-icon {
     position: relative;
 }
@@ -41,7 +40,6 @@ label {
 .input-icon i {
     position: absolute;
     left: 10px;
-    /* Adjust as needed */
     top: 50%;
     transform: translateY(-50%);
     color: #64B5F6;
@@ -102,10 +100,6 @@ button:focus {
     transition: transform 0.3s ease;
 }
 
-#result.show {
-    transform: translateY(0);
-}
-
 .grade-item {
     display: flex;
     justify-content: space-between;
@@ -118,13 +112,6 @@ button:focus {
 .grade-header {
     font-weight: bold;
     color: #64B5F6;
-}
-
-.grade-separator {
-    border: none;
-    height: 1px;
-    background-color: #4CAF50;
-    margin: 15px 0;
 }
 
 .modal {

@@ -24,49 +24,42 @@ function updateLastModified() {
 }
 
 function getGrades() {
-    const course = document.getElementById('course').value;
     const studentId = document.getElementById('studentId').value;
+    const course = document.getElementById('course').value;
     const resultDiv = document.getElementById('result');
     const spinner = document.getElementById('spinner');
 
-    if (!course || !studentId) {
-        resultDiv.innerHTML = '<p>Please select a course and enter a student ID.</p>';
+    if (!studentId || !course) {
+        alert('Please enter Student ID and select a Course.');
         return;
     }
 
-    // Show spinner while fetching data
+    resultDiv.innerHTML = '';
     spinner.style.display = 'block';
-    resultDiv.innerHTML = ''; // Clear previous results
 
-    fetch(`/grades/${course}/${studentId}`)
+    fetch(`/get_grades?studentId=${studentId}&course=${course}`)
         .then(response => {
             if (!response.ok) throw new Error('Network response was not ok');
             return response.json();
         })
         .then(data => {
-            spinner.style.display = 'none'; // Hide spinner
+            spinner.style.display = 'none';
 
             if (data.error) {
                 resultDiv.innerHTML = `<p>${data.error}</p>`;
-            } else {
-                let gradesHtml = `<h2>Grades for Student ID: ${studentId}</h2><ul>`;
-                const categories = ['Name', 'Assignment 1', 'Assignment 2', 'Assignment 3', 'Assignment 4', 'Quiz 1', 'Quiz 2', 'Rata - Rata', 'UTS','UAS'];
-                categories.forEach(category => {
-                    if (data.hasOwnProperty(category)) {
-                        gradesHtml += `<li class="grade-item"><span class="grade-header">${category}:</span> ${data[category]}</li>`;
-                    }
-                });
-                gradesHtml += '</ul>';
-                resultDiv.innerHTML = gradesHtml;
-                resultDiv.classList.add('show'); // Add animation class
+                return;
             }
+
+            data.grades.forEach(grade => {
+                const gradeItem = document.createElement('div');
+                gradeItem.classList.add('grade-item');
+                gradeItem.innerHTML = `<span class="grade-header">${grade.assignment}</span><span>${grade.score}</span>`;
+                resultDiv.appendChild(gradeItem);
+            });
         })
         .catch(error => {
             spinner.style.display = 'none';
-            resultDiv.innerHTML = '<p>Error fetching grades.</p>';
+            resultDiv.innerHTML = '<p>Error retrieving grades.</p>';
             console.error('Error:', error);
         });
 }
-
-// Call updateLastModified() when the page loads to display the initial last updated timestamp
-window.onload = updateLastModified;

@@ -1,6 +1,6 @@
 import os
 from datetime import datetime
-from flask import Flask, jsonify, render_template, abort
+from flask import Flask, jsonify, render_template
 
 app = Flask(__name__)
 # Set the CSV directory to 'static' folder

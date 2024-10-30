@@ -7,8 +7,7 @@ function updateLastModified() {
         return;
     }
 
-    // URL encode the course name to ensure it's properly formatted
-    const encodedCourse = encodeURIComponent(course);
+    const encodedCourse = encodeURIComponent(course); // Encode course name
 
     fetch(`/last_modified/${encodedCourse}`)
         .then(response => {
@@ -37,12 +36,11 @@ function getGrades() {
         return;
     }
 
-    // Show spinner while fetching data
     spinner.style.display = 'block';
     resultDiv.innerHTML = ''; // Clear previous results
 
-    const encodedCourse = encodeURIComponent(course);
-    const encodedStudentId = encodeURIComponent(studentId);
+    const encodedCourse = encodeURIComponent(course); // Encode course name
+    const encodedStudentId = encodeURIComponent(studentId); // Encode student ID
 
     fetch(`/grades/${encodedCourse}/${encodedStudentId}`)
         .then(response => {

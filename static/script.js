@@ -54,7 +54,7 @@ function getGrades() {
                 resultDiv.innerHTML = `<p>${data.error}</p>`;
             } else {
                 let gradesHtml = `<h2>Grades for Student ID: ${studentId}</h2><ul>`;
-                const categories = ['Name', 'Assignment 1', 'Assignment 2', 'Assignment 3', 'Assignment 4', 'Quiz 1', 'Quiz 2', 'Rata - Rata'];
+                const categories = ['Name', 'Assignment 1', 'Assignment 2', 'Assignment 3', 'Assignment 4', 'Quiz 1', 'Quiz 2', 'Rata - Rata'. 'UTS', 'UAS'];
                 categories.forEach(category => {
                     if (data.hasOwnProperty(category)) {
                         gradesHtml += `<li class="grade-item"><span class="grade-header">${category}:</span> ${data[category]}</li>`;

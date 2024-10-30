@@ -8,9 +8,14 @@ function updateLastModified() {
     }
 
     fetch(`/last_modified/${course}`)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+        })
         .then(data => {
-            lastUpdatedElement.textContent = data.error ? data.error : `Last Updated: ${data.last_modified_date}`;
+            lastUpdatedElement.textContent = data.error 
+                ? data.error 
+                : `Last Updated: ${data.last_modified_date}`;
         })
         .catch(error => {
             lastUpdatedElement.textContent = 'Error fetching last modified date.';
@@ -34,7 +39,10 @@ function getGrades() {
     resultDiv.innerHTML = ''; // Clear previous results
 
     fetch(`/grades/${course}/${studentId}`)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+        })
         .then(data => {
             spinner.style.display = 'none'; // Hide spinner
 

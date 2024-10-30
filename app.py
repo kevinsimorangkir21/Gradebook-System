@@ -16,16 +16,20 @@ def index():
 @app.route('/last_modified/<course>')
 def get_last_modified(course):
     """Returns the last modified date of the specified course."""
+    print(f"Requested last_modified for course: {course}")  # Debugging line
     try:
         last_modified_date = get_last_modified_date(course)
         return jsonify({'last_modified_date': last_modified_date})
     except FileNotFoundError:
+        print(f"Course not found: {course}")  # Debugging line
         return jsonify({'error': 'Course not found'}), 404
 
 
 @app.route('/grades/<course>/<student_id>')
 def get_grades(course, student_id):
     """Returns the grades for a specific student in a given course."""
+    print(
+        f"Fetching grades for course: {course}, student ID: {student_id}")  # Debugging line
     try:
         grades = read_grades_from_csv(f'{course}.csv')
         student_grades = grades.get(student_id)
@@ -35,9 +39,10 @@ def get_grades(course, student_id):
         else:
             return jsonify({'error': 'Student ID not found'}), 404
     except FileNotFoundError:
+        print(f"Course not found: {course}")  # Debugging line
         return jsonify({'error': 'Course not found'}), 404
     except Exception as e:
-        print(f"Error fetching grades: {e}")
+        print(f"Error fetching grades: {e}")  # Debugging line
         return jsonify({'error': 'An error occurred while fetching grades'}), 500
 
 

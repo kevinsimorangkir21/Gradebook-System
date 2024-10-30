@@ -7,7 +7,10 @@ function updateLastModified() {
         return;
     }
 
-    fetch(`/last_modified/${course}`)
+    // URL encode the course name to ensure it's properly formatted
+    const encodedCourse = encodeURIComponent(course);
+
+    fetch(`/last_modified/${encodedCourse}`)
         .then(response => {
             if (!response.ok) throw new Error('Network response was not ok');
             return response.json();
@@ -38,7 +41,10 @@ function getGrades() {
     spinner.style.display = 'block';
     resultDiv.innerHTML = ''; // Clear previous results
 
-    fetch(`/grades/${course}/${studentId}`)
+    const encodedCourse = encodeURIComponent(course);
+    const encodedStudentId = encodeURIComponent(studentId);
+
+    fetch(`/grades/${encodedCourse}/${encodedStudentId}`)
         .then(response => {
             if (!response.ok) throw new Error('Network response was not ok');
             return response.json();

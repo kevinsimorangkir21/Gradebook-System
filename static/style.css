@@ -13,18 +13,18 @@ body {
     min-height: 100vh;
     background-color: #121212;
     color: #e0e0e0;
+    padding: 10px;
 }
 
 /* Container styling */
 .container {
     max-width: 600px;
-    width: 90%;
+    width: 100%;
     background: #1f1f1f;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
     text-align: center;
-    margin: 1rem;
 }
 
 h1 {
@@ -153,31 +153,42 @@ button:hover {
         font-size: 1.8em;
     }
 
+    .container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+
     button {
         width: 100%;
+        font-size: 1em;
+    }
+
+    #result h2 {
+        font-size: 1.3em;
     }
 }
 
 @media (max-width: 480px) {
     .container {
-        padding: 1.5rem;
+        padding: 1rem;
     }
 
     h1 {
-        font-size: 1.5em;
+        font-size: 1.6em;
     }
 
-    label {
-        font-size: 0.9em;
-    }
-
+    label,
     select,
-    input[type="text"] {
+    input[type="text"],
+    button {
         font-size: 0.9em;
     }
 
     button {
-        font-size: 0.9em;
         padding: 0.7rem;
+    }
+
+    #result h2 {
+        font-size: 1.2em;
     }
 }
